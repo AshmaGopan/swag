@@ -1,0 +1,82 @@
+package swagpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Swaglabs {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "D:\\Selenium Class\\Selenium web driver\\Google Chrome\\chromedriver_win32\\chromedriver.exe");
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		ChromeDriver driver = new ChromeDriver(options);
+		
+		// Launch Website
+		
+        driver.get("https://www.saucedemo.com");
+        
+        // Login
+        
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.xpath("//input[@name='login-button']")).click();
+        
+        // Sort products low to high
+        
+        driver.findElement(By.cssSelector("product_sort_container")).click();
+        
+        Select select = new Select(driver.findElement(By.name("product_sort_container")));
+        select.selectByIndex("lohi");
+        
+		 
+        select.selectByVisibleText("Name (A to Z)");
+		 
+		 
+        select.selectByValue("Price (low to high");
+        //Add all item to cart
+        
+        
+        driver.findElement(By.xpath("//input[@name='add-to-cart-sauce-labs-onesie']")).click();
+        driver.findElement(By.xpath("//input[@name='add-to-cart-sauce-labs-bike-light']")).click();
+        driver.findElement(By.xpath("//input[@name='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+        driver.findElement(By.xpath("//input[@name='add-to-cart-test.allthethings()-t-shirt-(red)']")).click();
+        driver.findElement(By.xpath("//input[@name='add-to-cart-sauce-labs-backpack']")).click();
+        driver.findElement(By.xpath("//input[@name='add-to-cart-sauce-labs-fleece-jacket']")).click();
+      
+        //Go to cart page
+        
+        driver.findElement(By.cssSelector("shopping_cart_link")).click();
+       
+        
+        driver.findElement(By.xpath("//input[@name='remove-sauce-labs-bolt-t-shirt']")).click();
+        driver.findElement(By.xpath("//input[@name='remove-sauce-labs-bike-light']")).click();
+        
+        
+        //checkout button
+        
+        driver.findElement(By.xpath("//input[@name='checkout']")).click();
+        
+        // details
+        driver.findElement(By.id("first-name")).sendKeys("Keerthi");
+        driver.findElement(By.id("last-name")).sendKeys("Pratik");
+        driver.findElement(By.id("postal-code")).sendKeys("695588");
+        
+        driver.findElement(By.xpath("//input[@name='continue']")).click();
+        driver.findElement(By.xpath("//input[@name='finish']")).click();
+        driver.findElement(By.xpath("//input[@name='back-to-products']")).click();
+      
+        // log out
+        
+        driver.findElement(By.cssSelector("shopping_cart_container")).click();
+       
+        driver.findElement(By.xpath("//input[@id='logout_sidebar_link']")).click();
+       
+        
+        
+	}
+
+}
